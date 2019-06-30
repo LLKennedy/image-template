@@ -7,5 +7,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/8ef10da71a07f660c347/maintainability)](https://codeclimate.com/github/LLKennedy/imagetemplate-web/maintainability)
 [![dependencies](https://david-dm.org/LLKennedy/imagetemplate-web/status.svg)](https://david-dm.org/LLKennedy/imagetemplate-web)
 [![devDependencies](https://david-dm.org/LLKennedy/imagetemplate-web/dev-status.svg)](https://david-dm.org/LLKennedy/imagetemplate-web?type=dev)
+[![GitHub](https://img.shields.io/github/license/LLKennedy/imagetemplate-web.svg)](https://github.com/LLKennedy/imagetemplate-web/blob/master/LICENSE)
 
 A JS+HTML implementation of github.com/LLKennedy/imagetemplate with an editor UI
