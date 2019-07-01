@@ -24,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/LLKennedy/imagetemplate-web/issues"
   },
-  "homepage": "https://github.com/LLKennedy/imagetemplate-web#readme"
+  "homepage": "https://github.com/LLKennedy/imagetemplate-web#readme",
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.10"
+  },
+  "dependencies": {
+    "lit-element": "^2.2.0"
+  }
 }
