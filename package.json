@@ -1,34 +1,16 @@
 {
   "name": "image-template",
-  "version": "0.2.0",
-  "description": "A JS+HTML implementation of github.com/LLKennedy/imagetemplate with an editor UI",
-  "main": "index.js",
-  "scripts": {
-    "test": "npm run test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LLKennedy/image-template"
-  },
-  "keywords": [
-    "badge",
-    "image",
-    "template",
-    "templating",
-    "smartcard",
-    "id",
-    "credential"
-  ],
-  "author": "Luke Kennedy",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/LLKennedy/image-template/issues"
-  },
-  "homepage": "https://github.com/LLKennedy/image-template#readme",
-  "devDependencies": {
-    "@webcomponents/webcomponentsjs": "^2.2.10"
-  },
+  "description": "A JS+HTML implementation of github.com/LLKennedy/imagetemplate",
+  "main": "image-template.js",
   "dependencies": {
+    "@polymer/polymer": "^3.0.0",
     "lit-element": "^2.2.0"
+  },
+  "devDependencies": {
+    "@polymer/test-fixture": "^4.0.2",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "wct-mocha": "^1.0.1"
   }
 }
