@@ -4,7 +4,7 @@ node_js:
 dist: trusty
 sudo: required
 addons:
-  firefox: "67.0"
+  firefox: "66.0"
   chrome: stable
 cache:
   directories:
