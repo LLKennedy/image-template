@@ -1,28 +1,17 @@
 {
-  "name": "imagetemplate-web",
-  "version": "0.1.0",
-  "description": "A JS+HTML implementation of github.com/LLKennedy/imagetemplate with an editor UI",
-  "main": "index.js",
-  "scripts": {
-    "test": "npm run test"
+  "name": "image-template",
+  "description": "A JS+HTML implementation of github.com/LLKennedy/imagetemplate",
+  "main": "image-template.js",
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0",
+    "lit-element": "^2.2.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LLKennedy/imagetemplate-web"
-  },
-  "keywords": [
-    "badge",
-    "image",
-    "template",
-    "templating",
-    "smartcard",
-    "id",
-    "credential"
-  ],
-  "author": "Luke Kennedy",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/LLKennedy/imagetemplate-web/issues"
-  },
-  "homepage": "https://github.com/LLKennedy/imagetemplate-web#readme"
+  "devDependencies": {
+    "@polymer/test-fixture": "^4.0.2",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "polymer-cli": "^1.9.10",
+    "wct-mocha": "^1.0.1"
+  }
 }
