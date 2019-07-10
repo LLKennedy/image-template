@@ -2,13 +2,14 @@
   "name": "image-template",
   "description": "A JS+HTML implementation of github.com/LLKennedy/imagetemplate",
   "author": "Luke Kennedy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "image-template.js",
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
     "lit-element": "^2.2.0"
   },
   "devDependencies": {
+    "@polymer/iron-demo-helpers": "^3.1.0",
     "@polymer/test-fixture": "^4.0.2",
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "chai": "^4.2.0",

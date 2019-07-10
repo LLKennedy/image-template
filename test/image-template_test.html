@@ -24,7 +24,7 @@
 
     <test-fixture id="ChangedPropertyTestFixture">
       <template>
-        <image-template prop1="new-prop1"></image-template>
+        <image-template width="6" height="12"></image-template>
       </template>
     </test-fixture>
 
@@ -33,19 +33,23 @@
 
         test('instantiating the element with default properties works', () => {
           const element = fixture('BasicTestFixture');
-          assert.equal(element.prop1, 'image-template');
+          assert.equal(element.width, 0);
+          assert.equal(element.height, 0);
           const elementShadowRoot = element.shadowRoot;
-          const elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello image-template!');
+          const elementCanvas = elementShadowRoot.querySelector('canvas');
+          assert.equal(elementCanvas.width, 0);
+          assert.equal(elementCanvas.height, 0);
         });
 
-        test('setting a property on the element works', () => {
+        test('setting width and height on the element works', () => {
           // Create a test fixture
           const element = fixture('ChangedPropertyTestFixture');
-          assert.equal(element.prop1, 'new-prop1');
+          assert.equal(element.width, 6);
+          assert.equal(element.height, 12);
           const elementShadowRoot = element.shadowRoot;
-          const elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
+          const elementCanvas = elementShadowRoot.querySelector('canvas');
+          assert.equal(elementCanvas.width, 6);
+          assert.equal(elementCanvas.height, 12);
         });
 
       });

@@ -16,14 +16,18 @@ class ImageTemplate extends PolymerElement {
           display: block;
         }
       </style>
-      <h2>Hello [[prop1]]!</h2>
+      <canvas width="{{width}}" height="{{height}}"/>
     `;
   }
   static get properties() {
     return {
-      prop1: {
-        type: String,
-        value: 'image-template',
+      width: {
+        type: Number,
+        value: 0,
+      },
+      height: {
+        type: Number,
+        value: 0,
       },
     };
   }
