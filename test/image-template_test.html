@@ -24,7 +24,7 @@
 
     <test-fixture id="ChangedPropertyTestFixture">
       <template>
-        <image-template prop1="new-prop1"></image-template>
+        <image-template prop1="6"></image-template>
       </template>
     </test-fixture>
 
@@ -33,19 +33,19 @@
 
         test('instantiating the element with default properties works', () => {
           const element = fixture('BasicTestFixture');
-          assert.equal(element.prop1, 'image-template');
+          assert.equal(element.prop1, 12);
           const elementShadowRoot = element.shadowRoot;
           const elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello image-template!');
+          assert.equal(elementHeader.innerHTML, 'Hello 12!');
         });
 
         test('setting a property on the element works', () => {
           // Create a test fixture
           const element = fixture('ChangedPropertyTestFixture');
-          assert.equal(element.prop1, 'new-prop1');
+          assert.equal(element.prop1, 6);
           const elementShadowRoot = element.shadowRoot;
           const elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
+          assert.equal(elementHeader.innerHTML, 'Hello 6!');
         });
 
       });

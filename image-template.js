@@ -22,9 +22,10 @@ class ImageTemplate extends PolymerElement {
   static get properties() {
     return {
       prop1: {
-        type: String,
-        value: 'image-template',
+        type: Number,
+        value: 12,
       },
+      
     };
   }
 }
