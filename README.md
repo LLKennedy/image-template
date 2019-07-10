@@ -10,3 +10,11 @@
 [![GitHub](https://img.shields.io/github/license/LLKennedy/image-template.svg)](https://github.com/LLKennedy/image-template/blob/master/LICENSE)
 
 A JS+HTML implementation of github.com/LLKennedy/imagetemplate with an editor UI
+
+## Installation
+
+`npm install image-template`
+
+## Usage
+
+`<image-template width="100" height="100">`
