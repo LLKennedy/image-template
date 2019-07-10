@@ -1,11 +1,11 @@
 {
   "name": "image-template",
-  "version": "0.0.0",
-  "description": "Webcomponent image-template following open-wc recommendations",
-  "author": "image-template",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "description": "A JS+HTML implementation of github.com/LLKennedy/imagetemplate",
+  "author": "Luke Kennedy",
+  "version": "0.2.0",
+  "homepage": "https://github.com/LLKennedy/image-template/",
   "license": "MIT",
-  "repository": "https://github.com/open-wc/open-wc/",
+  "repository": "https://github.com/LLKennedy/image-template/",
   "scripts": {
     "start": "owc-dev-server --app-index demo/index.html --open --watch",
     "lint:eslint": "eslint --ext .js,.html .",
