@@ -31,4 +31,8 @@ export default class ImageTemplate extends LitElement {
       <canvas width=[[width]] height=[[height]]/>
     `;
   }
+
+  updated(changedProperties) { 
+
+  }
 }
