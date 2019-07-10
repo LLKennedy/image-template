@@ -13,7 +13,7 @@ module.exports = config => {
         // npm run test -- --grep test/bar/*
         { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' },
       ],
-      reporters: ['coverage', 'coveralls'],
+      reporters: ['coveralls'],
       coverageReporter: {
         type: 'lcov', // lcov or lcovonly are required for generating lcov.info files
         dir: 'coverage/'
