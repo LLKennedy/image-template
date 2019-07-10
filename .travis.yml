@@ -15,5 +15,5 @@ install:
 #   - npm run lint
 script:
   # - polymer test
-  - xvfb-run polymer test
+  - npm run test
   # - xvfb-run npm run test:integration
