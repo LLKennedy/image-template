@@ -16,7 +16,7 @@ class ImageTemplate extends PolymerElement {
           display: block;
         }
       </style>
-      <canvas width="[[width]]" height="[[width]]"/>
+      <canvas width="{{width}}" height="{{width}}"/>
     `;
   }
   static get properties() {
