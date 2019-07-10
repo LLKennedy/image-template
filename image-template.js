@@ -29,6 +29,10 @@ class ImageTemplate extends PolymerElement {
         type: Number,
         value: 0,
       },
+      template: {
+        type: Object,
+        value: {},
+      },
     };
   }
 }

@@ -24,7 +24,7 @@
 
     <test-fixture id="ChangedPropertyTestFixture">
       <template>
-        <image-template width="6" height="12"></image-template>
+        <image-template width="6" height="12" template="{a: 1, b: 2}"></image-template>
       </template>
     </test-fixture>
 
@@ -35,6 +35,7 @@
           const element = fixture('BasicTestFixture');
           assert.equal(element.width, 0);
           assert.equal(element.height, 0);
+          assert.deepEqual(element.template, {});
           const elementShadowRoot = element.shadowRoot;
           const elementCanvas = elementShadowRoot.querySelector('canvas');
           assert.equal(elementCanvas.width, 0);
@@ -46,6 +47,7 @@
           const element = fixture('ChangedPropertyTestFixture');
           assert.equal(element.width, 6);
           assert.equal(element.height, 12);
+          assert.equal(element.template, "{a: 1, b: 2}");
           const elementShadowRoot = element.shadowRoot;
           const elementCanvas = elementShadowRoot.querySelector('canvas');
           assert.equal(elementCanvas.width, 6);
