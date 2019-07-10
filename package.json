@@ -2,7 +2,7 @@
   "name": "image-template",
   "description": "A JS+HTML implementation of github.com/LLKennedy/imagetemplate",
   "author": "Luke Kennedy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "image-template.js",
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
