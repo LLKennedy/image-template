@@ -33,9 +33,10 @@
 
         test('instantiating the element with default properties works', () => {
           const element = fixture('BasicTestFixture');
+          console.log("raw element:", element);
           assert.equal(element.width, 0);
           assert.equal(element.height, 0);
-          assert.deepEqual(element.template, {});
+          assert.equal(element.template, {});
           const elementShadowRoot = element.shadowRoot;
           const elementCanvas = elementShadowRoot.querySelector('canvas');
           assert.equal(elementCanvas.width, 0);

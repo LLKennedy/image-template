@@ -1,15 +1,14 @@
-import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {html, LitElement} from 'lit-element';
 
 /**
  * `image-template`
  * A JS+HTML implementation of github.com/LLKennedy/imagetemplate
  *
  * @customElement
- * @polymer
  * @demo demo/index.html
  */
-class ImageTemplate extends PolymerElement {
-  static get template() {
+class ImageTemplate extends LitElement {
+  render() {
     return html`
       <style>
         :host {
