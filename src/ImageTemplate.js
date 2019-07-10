@@ -33,8 +33,8 @@ export default class ImageTemplate extends LitElement {
 	}
 
 	updated(changedProperties) { 
-		if (changedProperties.hasOwnProperty("template")) {
+		// if (changedProperties.hasOwnProperty("template")) {
 			
-		}
+		// }
 	}
 }
