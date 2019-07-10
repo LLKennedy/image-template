@@ -16,16 +16,19 @@ class ImageTemplate extends PolymerElement {
           display: block;
         }
       </style>
-      <canvas width="{{width}}" height="{{width}}"/>
+      <canvas width="{{width}}" height="{{height}}"/>
     `;
   }
   static get properties() {
     return {
       width: {
         type: Number,
-        value: 12,
+        value: 0,
       },
-      
+      height: {
+        type: Number,
+        value: 0,
+      },
     };
   }
 }
