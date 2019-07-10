@@ -16,12 +16,12 @@ class ImageTemplate extends PolymerElement {
           display: block;
         }
       </style>
-      <h2>Hello [[prop1]]!</h2>
+      <canvas width="[[width]]" height="[[width]]"/>
     `;
   }
   static get properties() {
     return {
-      prop1: {
+      width: {
         type: Number,
         value: 12,
       },
