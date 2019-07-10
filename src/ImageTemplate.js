@@ -13,21 +13,22 @@ export default class ImageTemplate extends LitElement {
 
   static get properties() {
     return {
-      heading: { type: String },
+      width: { type: Number },
+      height: { type: Number },
+      template: { type: Object },
     };
   }
 
   constructor() {
     super();
-    this.heading = 'Hello world!';
+    this.width = 0;
+    this.height = 0;
+    this.template = {};
   }
 
   render() {
     return html`
-      <h2>${this.heading}</h2>
-      <div>
-        <slot></slot>
-      </div>
+      <canvas width=[[width]] height=[[height]]/>
     `;
   }
 }
