@@ -15,7 +15,7 @@ class ImageTemplate extends LitElement {
           display: block;
         }
       </style>
-      <canvas width="{{width}}" height="{{height}}"/>
+      <canvas width="[[width]]" height="[[height]]"/>
     `;
   }
   static get properties() {
@@ -27,10 +27,6 @@ class ImageTemplate extends LitElement {
       height: {
         type: Number,
         value: 0,
-      },
-      template: {
-        type: Object,
-        value: {},
       },
     };
   }
