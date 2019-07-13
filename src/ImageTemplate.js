@@ -19,25 +19,25 @@ export default class ImageTemplate extends LitElement {
       height: { type: Number },
       template: {
         type: Object,
-        converter: {
-          fromAttribute: value => {
-            const parsedTemplate = JSON.parse(value);
-            if (parsedTemplate === null || parsedTemplate === undefined) {
-              return {};
-            }
-            if (
-              typeof parsedTemplate !== 'object' ||
-              parsedTemplate.constructor === [].constructor
-            ) {
-              return {};
-            }
-            return parsedTemplate;
-          },
-          toAttribute: value => {
-            const stringifiedTemplate = JSON.stringify(value);
-            return stringifiedTemplate;
-          },
-        },
+        // converter: {
+        //   fromAttribute: value => {
+        //     const parsedTemplate = JSON.parse(value);
+        //     if (parsedTemplate === null || parsedTemplate === undefined) {
+        //       return {};
+        //     }
+        //     if (
+        //       typeof parsedTemplate !== 'object' ||
+        //       parsedTemplate.constructor === [].constructor
+        //     ) {
+        //       return {};
+        //     }
+        //     return parsedTemplate;
+        //   },
+        //   toAttribute: value => {
+        //     const stringifiedTemplate = JSON.stringify(value);
+        //     return stringifiedTemplate;
+        //   },
+        // },
       },
     };
   }
