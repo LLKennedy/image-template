@@ -9,6 +9,8 @@ addons:
 cache:
   directories:
     - node_modules
+services:
+  - xvfb
 install:
   - npm install
 before_script:
@@ -16,7 +18,7 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
-  - npm run test:browsers
+  - xvfb-run npm run test:browsers
 after_script:
   - codeclimate < coverage/**/lcov.info
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
