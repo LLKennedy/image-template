@@ -20,5 +20,5 @@ before_script:
 script:
   - xvfb-run npm run test:browsers
 after_script:
-  - codeclimate < coverage/**/lcov.info
+  # - codeclimate < coverage/**/lcov.info
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
