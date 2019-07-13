@@ -1,5 +1,7 @@
 import { html, css, LitElement } from 'lit-element';
 
+const parsedTemplateEvent = new Event('parsed-template');
+
 export default class ImageTemplate extends LitElement {
 	static get styles() {
 		return css`
@@ -18,8 +20,8 @@ export default class ImageTemplate extends LitElement {
 			template: { 
 				type: Object,
 				converter: {
-					fromAttribute: (value, _) => {
-						let parsedTemplate = JSON.parse(value);
+					fromAttribute: (value) => {
+						const parsedTemplate = JSON.parse(value);
 						if (parsedTemplate === null || parsedTemplate === undefined) {
 							return {};
 						}
@@ -28,8 +30,8 @@ export default class ImageTemplate extends LitElement {
 						}
 						return parsedTemplate;
 					},
-					toAttribute: (value, _) => {
-						let stringifiedTemplate = JSON.stringify(value);
+					toAttribute: (value) => {
+						const stringifiedTemplate = JSON.stringify(value);
 						return stringifiedTemplate;
 					}
 				}
@@ -51,8 +53,8 @@ export default class ImageTemplate extends LitElement {
 	}
 
 	updated(changedProperties) { 
-		if (changedProperties.hasOwnProperty("template")) {
-			
+		if (Object.prototype.hasOwnProperty.call(changedProperties, "template")) {
+			this.dispatchEvent(parsedTemplateEvent)
 		}
 	}
 }
