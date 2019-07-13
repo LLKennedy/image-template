@@ -15,7 +15,25 @@ export default class ImageTemplate extends LitElement {
 		return {
 			width: { type: Number },
 			height: { type: Number },
-			template: { type: Object },
+			template: { 
+				type: Object,
+				converter: {
+					fromAttribute: (value, _) => {
+						let parsedTemplate = JSON.parse(value);
+						if (parsedTemplate === null || parsedTemplate === undefined) {
+							return {};
+						}
+						if (typeof parsedTemplate !== "object" || parsedTemplate.constructor === [].constructor) {
+							return {};
+						}
+						return parsedTemplate;
+					},
+					toAttribute: (value, _) => {
+						let stringifiedTemplate = JSON.stringify(value);
+						return stringifiedTemplate;
+					}
+				}
+			},
 		};
 	}
 
@@ -33,8 +51,8 @@ export default class ImageTemplate extends LitElement {
 	}
 
 	updated(changedProperties) { 
-		// if (changedProperties.hasOwnProperty("template")) {
+		if (changedProperties.hasOwnProperty("template")) {
 			
-		// }
+		}
 	}
 }
