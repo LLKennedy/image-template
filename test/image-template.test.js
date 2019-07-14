@@ -1,4 +1,4 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { html, fixture, oneEvent, expect } from '@open-wc/testing';
 
 import '../src/image-template.js';
 
@@ -36,17 +36,17 @@ describe('<image-template>', () => {
       <image-template></image-template>
     `);
     await el.updateComplete;
-    expect(el.count).to.equal(1);
     // const expectedEvent = oneEvent(el, 'parsed-template');
     expect(el.width).to.equal(0);
     expect(el.height).to.equal(0);
     expect(el.template).to.eql({});
     expect({ ...el._template }).to.eql({});
-    el.template = { a: 2 };
+    el.template = {...{ a: 2 }};
     el.requestUpdate();
+    const ev = oneEvent(el, 'parsed-template');
     await el.updateComplete;
+    expect(await ev).to.exist;
     expect(el.template).to.deep.equal({ a: 2 });
     expect(el._template).to.eql({ a: 2 });
-    // expect(el.count).to.equal(2);
   });
 });

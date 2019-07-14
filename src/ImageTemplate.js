@@ -1,6 +1,6 @@
 import { html, css, LitElement } from 'lit-element';
 
-const parsedTemplateEvent = new Event('parsed-template');
+const parsedTemplateEventText = 'parsed-template';
 
 export default class ImageTemplate extends LitElement {
   static get styles() {
@@ -44,7 +44,6 @@ export default class ImageTemplate extends LitElement {
 
   constructor() {
     super();
-    this.count = 0;
     this.width = 0;
     this.height = 0;
     this.template = {};
@@ -58,15 +57,19 @@ export default class ImageTemplate extends LitElement {
   }
 
   updated(changedProperties) {
-    if (Object.prototype.hasOwnProperty.call(changedProperties, 'template')) {
+    // if (Object.prototype.hasOwnProperty.call(changedProperties, 'template')) {
       // Do more processing before accepting new inner template.
       this._template = this.template;
 
       // Add discovered properties to this object in the event return.
-      this.dispatchEvent(parsedTemplateEvent, {});
-    } else {
-      this._template = changedProperties;
-    }
-    this.count = this.count + 1;
+      const parsedEvent = new Event(parsedTemplateEventText, {
+        detail: {
+          message: 'template parsed',
+        },
+        bubbles: true,
+        composed: true,
+      });
+      this.dispatchEvent(parsedEvent);
+    // }
   }
 }
