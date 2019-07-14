@@ -37,7 +37,7 @@ describe('<image-template>', () => {
     `);
     while (!await el.updateComplete) {};
     expect(el.count).to.equal(1);
-    let expectedEvent = oneEvent(el, 'parsed-template');
+    const expectedEvent = oneEvent(el, 'parsed-template');
     expect(el.width).to.equal(0);
     expect(el.height).to.equal(0);
     expect(el.template).to.eql({});
