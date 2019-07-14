@@ -44,9 +44,11 @@ export default class ImageTemplate extends LitElement {
 
   constructor() {
     super();
+    this.count = 0;
     this.width = 0;
     this.height = 0;
     this.template = {};
+    this._template = {};
   }
 
   render() {
@@ -57,7 +59,14 @@ export default class ImageTemplate extends LitElement {
 
   updated(changedProperties) {
     if (Object.prototype.hasOwnProperty.call(changedProperties, 'template')) {
-      this.dispatchEvent(parsedTemplateEvent);
+      // Do more processing before accepting new inner template.
+      this._template = this.template;
+
+      // Add discovered properties to this object in the event return.
+      this.dispatchEvent(parsedTemplateEvent, {});
+    } else {
+      this._template = changedProperties;
     }
+    this.count++;
   }
 }
