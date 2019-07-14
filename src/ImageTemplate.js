@@ -67,6 +67,6 @@ export default class ImageTemplate extends LitElement {
     } else {
       this._template = changedProperties;
     }
-    this.count++;
+    this.count = this.count + 1;
   }
 }
