@@ -42,10 +42,13 @@ describe('<image-template>', () => {
     expect(el.template).to.eql({});
     expect({ ...el._template }).to.eql({});
     el.template = {...{ a: 2 }};
-    el.requestUpdate();
-    const ev = oneEvent(el, 'parsed-template');
-    await el.updateComplete;
-    expect(await ev).to.exist;
+    const complete = el.requestUpdate('template', {});
+    // el.requestUpdate();
+    const ev = oneEvent(el, 'should-parse');
+    await complete;
+    const caught = await ev;
+    expect(caught).to.exist;
+    expect({...caught.props}).to.eql({});
     expect(el.template).to.deep.equal({ a: 2 });
     expect(el._template).to.eql({ a: 2 });
   });

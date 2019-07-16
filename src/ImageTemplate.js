@@ -19,6 +19,9 @@ export default class ImageTemplate extends LitElement {
       height: { type: Number },
       template: {
         type: Object,
+        hasChanged(newVal, oldVal) {
+          return true;
+        },
         // converter: {
         //   fromAttribute: value => {
         //     const parsedTemplate = JSON.parse(value);
@@ -56,8 +59,20 @@ export default class ImageTemplate extends LitElement {
     `;
   }
 
+  shouldUpdate(changedProperties) {
+    const shouldEvent = new CustomEvent('should-parse', {
+      detail: {
+        message: 'template parsed',
+      },
+      bubbles: true,
+      composed: true,
+    });
+    shouldEvent.props = changedProperties;
+    this.dispatchEvent(shouldEvent);
+  }
+
   updated(changedProperties) {
-    // if (Object.prototype.hasOwnProperty.call(changedProperties, 'template')) {
+    if (Object.prototype.hasOwnProperty.call(changedProperties, 'template')) {
       // Do more processing before accepting new inner template.
       this._template = this.template;
 
@@ -70,6 +85,6 @@ export default class ImageTemplate extends LitElement {
         composed: true,
       });
       this.dispatchEvent(parsedEvent);
-    // }
+    }
   }
 }
