@@ -1,6 +1,10 @@
 const tagName = 'image-template';
 const template = document.createElement('template'); // Use built-in template tag
-template.innerHTML = `<img id="image"/>`;
+template.innerHTML = `
+<style>
+</style>
+<img id="image"/>
+`;
 const isIntersecting = ({isIntersecting}) => isIntersecting;
 
 class ImageTemplate extends HTMLElement {
