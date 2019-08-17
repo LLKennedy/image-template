@@ -6,7 +6,12 @@
   "homepage": "https://github.com/LLKennedy/image-template/",
   "license": "MIT",
   "repository": "https://github.com/LLKennedy/image-template/",
-  "scripts": {},
+  "scripts": {
+    "open": "cypress open",
+    "test": "cypress run"
+  },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "cypress": "^3.4.1"
+  }
 }
