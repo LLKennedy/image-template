@@ -1,6 +1,7 @@
 const tagName = 'image-template';
 const template = document.createElement('template'); // Use built-in template tag
 template.innerHTML = `<img id="image"/>`;
+const isIntersecting = ({isIntersecting}) => isIntersecting;
 
 class ImageTemplate extends HTMLElement {
     /**
@@ -57,6 +58,8 @@ class ImageTemplate extends HTMLElement {
      */
     constructor() {
         super();
+        // Bind the observerCallback so it can access the element with 'this'.
+        this.observerCallback = this.observerCallback.bind(this);
         this.width = 400;
         this.height = 300;
     }
@@ -80,6 +83,29 @@ class ImageTemplate extends HTMLElement {
 
     adoptedCallback() {
         // This is basically a stub for future HTML modules functionality
+    }
+
+    // Lazyload
+    
+    /**
+     * Sets the 'intersecting' property when the element is on-screen.
+     * @param {[IntersectionObserverEntry]} entries 
+     * @protected
+     */
+    observerCallback(entries) {
+        if (entries.some(isIntersecting)) this.intersecting = true;
+    }
+
+    /**
+     * Initializes the IntersectionObserver when the element instantiates
+     * @protected
+     */
+    initIntersectionObserver() {
+        if (this.observer) return;
+        // Start loading the image 10px before it appears on screen
+        const rootMargin = `10px`;
+        this.observer = new IntersectionObserver(this.observerCallback, { rootMargin });
+        this.observer.observe(this);
     }
 
     // Utility functions
