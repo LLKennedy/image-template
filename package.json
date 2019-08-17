@@ -6,7 +6,11 @@
   "homepage": "https://github.com/LLKennedy/image-template/",
   "license": "MIT",
   "repository": "https://github.com/LLKennedy/image-template/",
-  "scripts": {},
+  "scripts": {
+    "test": "mocha"
+  },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  }
 }
