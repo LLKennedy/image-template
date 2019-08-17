@@ -1,11 +1,16 @@
 const tagName = 'image-template';
+const isIntersecting = ({isIntersecting}) => isIntersecting;
 const template = document.createElement('template'); // Use built-in template tag
 template.innerHTML = `
 <style>
+:host {
+    position: relative;
+}
 </style>
-<img id="image"/>
+<img id="image" aria-hidden="true"/>
 `;
-const isIntersecting = ({isIntersecting}) => isIntersecting;
+
+window.ShadyCSS && window.ShadyCSS.prepareTemplate(template, tagName);
 
 class ImageTemplate extends HTMLElement {
     /**
@@ -61,8 +66,8 @@ class ImageTemplate extends HTMLElement {
      */
     set intersecting(value) {
         if (value) {
+            this.shadowImage.onload = this.setIntersecting;
             this.shadowImage.src = this.kittenURLFromDimensions(this.getAttribute('width'), this.getAttribute('height'));
-            this.setAttribute('intersecting', '');
             this.disconnectObserver();
         } else {
             this.removeAttribute('intersecting');
@@ -82,17 +87,23 @@ class ImageTemplate extends HTMLElement {
         super();
         // Bind the observerCallback so it can access the element with 'this'.
         this.observerCallback = this.observerCallback.bind(this);
+        this.setIntersecting = this.setIntersecting.bind(this);
         this.width = 400;
         this.height = 300;
     }
 
     connectedCallback() {
+        // Remove the wrapping "<image-template>" from the a11y tree.
+        this.setAttribute('role', 'presentation');
+        this.updateShadyStyles();
         if (!this.shadowRoot) {
             this.attachShadow({mode: 'open'});
             this.shadowRoot.appendChild(template.content.cloneNode(true));
             this.shadowImage = this.shadowRoot.getElementById('image');
+            this.width = this.getAttribute('width');
+            this.height = this.getAttribute('height');
+            this.shadowImage.src = this.kittenURLFromDimensions(this.getAttribute('width'), this.getAttribute('height'));
         }
-        this.shadowImage.src = this.kittenURLFromDimensions(this.getAttribute('width'), this.getAttribute('height'));
         
         // Do lazy loading if possible
         if ('IntersectionObserver' in window) {
@@ -103,7 +114,7 @@ class ImageTemplate extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
-        this.safeSetAttribute(name, newVal);
+        this[name] = newVal;
     }
 
     disconnectedCallback() {
@@ -146,6 +157,25 @@ class ImageTemplate extends HTMLElement {
         this.observer.disconnect();
         this.observer = null;
         delete this.observer;
+    }
+
+    /**
+     * Sets the intersecting attribute and reload styles if hte polyfill is at play
+     * @param {any} event
+     * @protected
+     */
+    setIntersecting(event) {
+        this.shadowImage.removeAttribute('aria-hidden');
+        this.setAttribute('intersecting', '');
+        this.updateShadyStyles();
+    }
+
+    /**
+     * When the polyfill is in play, ensure that styles are updates
+     * @protected
+     */
+    updateShadyStyles() {
+        window.ShadyCSS && window.ShadyCSS.styleElement(this);
     }
 
     // Utility functions
