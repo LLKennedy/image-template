@@ -10,14 +10,7 @@ class ImageTemplate extends HTMLElement {
         return ['width', 'height'];
     }
 
-    /**
-     * Runs any construction operations which do not require any DOM access, such as setting default internal property values
-     */
-    constructor() {
-        super();
-        this.width = 400;
-        this.height = 300;
-    }
+    // Getter/setter methods
 
     /**
      * Sets attributes in a loop-safe manner
@@ -57,6 +50,17 @@ class ImageTemplate extends HTMLElement {
         return this.getAttribute('height');
     }
 
+    // Lifecycle callbacks
+
+    /**
+     * Runs any construction operations which do not require any DOM access, such as setting default internal property values
+     */
+    constructor() {
+        super();
+        this.width = 400;
+        this.height = 300;
+    }
+
     connectedCallback() {
         if (!this.shadowRoot) {
             this.attachShadow({mode: 'open'});
@@ -69,6 +73,16 @@ class ImageTemplate extends HTMLElement {
     attributeChangedCallback(name, oldVal, newVal) {
         this.safeSetAttribute(name, newVal);
     }
+
+    disconnectedCallback() {
+        /* do cleanup stuff here */
+    }
+
+    adoptedCallback() {
+        // This is basically a stub for future HTML modules functionality
+    }
+
+    // Utility functions
 
     /**
      * Construct a kitten URL from a width and height
