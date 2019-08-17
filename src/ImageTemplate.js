@@ -6,9 +6,6 @@ export default class ImageTemplate extends LitElement {
   static get styles() {
     return css`
       :host {
-        background: grey;
-        display: block;
-        padding: 25px;
       }
     `;
   }
@@ -19,25 +16,6 @@ export default class ImageTemplate extends LitElement {
       height: { type: Number },
       template: {
         type: Object,
-        // converter: {
-        //   fromAttribute: value => {
-        //     const parsedTemplate = JSON.parse(value);
-        //     if (parsedTemplate === null || parsedTemplate === undefined) {
-        //       return {};
-        //     }
-        //     if (
-        //       typeof parsedTemplate !== 'object' ||
-        //       parsedTemplate.constructor === [].constructor
-        //     ) {
-        //       return {};
-        //     }
-        //     return parsedTemplate;
-        //   },
-        //   toAttribute: value => {
-        //     const stringifiedTemplate = JSON.stringify(value);
-        //     return stringifiedTemplate;
-        //   },
-        // },
       },
     };
   }
@@ -51,9 +29,11 @@ export default class ImageTemplate extends LitElement {
   }
 
   render() {
-    return html`
+    return (
       <canvas width="[[width]]" height="[[height]]" />
-    `;
+    )
+    // console.log("props: ", innerCanvas.props);
+    // return innerCanvas;
   }
 
   updated(changedProperties) {
