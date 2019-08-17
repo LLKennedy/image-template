@@ -3,11 +3,81 @@ const template = document.createElement('template'); // Use built-in template ta
 template.innerHTML = `<img id="image"/>`;
 
 class ImageTemplate extends HTMLElement {
+    /**
+     * Defines the attributes which this element responds to.
+     */
+    static get observedAttributres() {
+        return ['width', 'height'];
+    }
+
+    /**
+     * Runs any construction operations which do not require any DOM access, such as setting default internal property values
+     */
+    constructor() {
+        super();
+        this.width = 400;
+        this.height = 300;
+    }
+
+    /**
+     * Sets attributes in a loop-safe manner
+     * @param {String} name Attribute name
+     * @param {any} value
+     * @protected
+     */
+    safeSetAttribute(name, value) {
+        if (this.getAttribute(name) !== value) this.setAttribute(name, value);
+    }
+
+    /**
+     * Image width
+     * @type {Number}
+     */
+    set width(value) {
+        this.safeSetAttribute('width', value);
+        // Class property is set, now pass it through to the shadow dom
+        if (this.shadowImage) this.shadowImage.src = this.kittenURLFromDimensions(this.getAttribute('width'), this.getAttribute('height'));
+    }
+
+    /**
+     * Image height
+     * @type {Number}
+     */
+    set height(value) {
+        this.safeSetAttribute('height', value);
+        // Class property is set, now pass it through to the shadow dom
+        if (this.shadowImage) this.shadowImage.src = this.kittenURLFromDimensions(this.getAttribute('width'), this.getAttribute('height'));
+    }
+
+    get width() {
+        return this.getAttribute('width');
+    }
+
+    get height() {
+        return this.getAttribute('height');
+    }
+
     connectedCallback() {
         if (!this.shadowRoot) {
             this.attachShadow({mode: 'open'});
             this.shadowRoot.appendChild(template.content.cloneNode(true));
+            this.shadowImage = this.shadowRoot.getElementById('image');
         }
+        this.shadowImage.src = this.kittenURLFromDimensions(this.getAttribute('width'), this.getAttribute('height'));
+    }
+
+    attributeChangedCallback(name, oldVal, newVal) {
+        this.safeSetAttribute(name, newVal);
+    }
+
+    /**
+     * Construct a kitten URL from a width and height
+     * @param {Number} width Width of the kitten image
+     * @param {Number} height Height of the kitten image
+     * @return {String} The constructed URL
+     */
+    kittenURLFromDimensions(width, height) {
+        return "https://placekitten.com/" + width + "/" + height; // FIXME: string concat
     }
 }
 
