@@ -51,6 +51,24 @@ class ImageTemplate extends HTMLElement {
         return this.getAttribute('height');
     }
 
+    /**
+     * Sets whether the element is on-screen
+     * @type {Boolean}
+     */
+    set intersecting(value) {
+        if (value) {
+            this.shadowImage.src = this.kittenURLFromDimensions(this.getAttribute('width'), this.getAttribute('height'));
+            this.setAttribute('intersecting', '');
+            this.disconnectObserver();
+        } else {
+            this.removeAttribute('intersecting');
+        }
+    }
+
+    get intersecting() {
+        return this.hasAttribute('intersecting');
+    }
+
     // Lifecycle callbacks
 
     /**
@@ -71,6 +89,13 @@ class ImageTemplate extends HTMLElement {
             this.shadowImage = this.shadowRoot.getElementById('image');
         }
         this.shadowImage.src = this.kittenURLFromDimensions(this.getAttribute('width'), this.getAttribute('height'));
+        
+        // Do lazy loading if possible
+        if ('IntersectionObserver' in window) {
+            this.initIntersectionObserver();
+        } else {
+            this.intersecting = true;
+        }
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -79,6 +104,7 @@ class ImageTemplate extends HTMLElement {
 
     disconnectedCallback() {
         /* do cleanup stuff here */
+        this.disconnectObserver();
     }
 
     adoptedCallback() {
@@ -106,6 +132,16 @@ class ImageTemplate extends HTMLElement {
         const rootMargin = `10px`;
         this.observer = new IntersectionObserver(this.observerCallback, { rootMargin });
         this.observer.observe(this);
+    }
+
+    /**
+     * Disconnects and unloads the IntersectionObserver
+     * @protected
+     */
+    disconnectObserver() {
+        this.observer.disconnect();
+        this.observer = null;
+        delete this.observer;
     }
 
     // Utility functions
