@@ -9,6 +9,7 @@ addons:
 cache:
   directories:
     - node_modules
+    - /home/travis/.cache/Cypress
 install:
   - npm install
 script:
