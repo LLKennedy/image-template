@@ -12,6 +12,5 @@ cache:
     - /home/travis/.cache/Cypress
 install:
   - npm install
-  - cypress install
 script:
   - npm run test
